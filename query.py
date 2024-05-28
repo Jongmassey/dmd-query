@@ -48,6 +48,6 @@ def opensafely_asthma_oral_prednisolone_medication(
     # all oral prednisolone meds
     prednisolone_vmps = VMPs_by_ing_names(s, ["Prednisolone"])
     oral_vmps = VMPs_by_route_names(s, ["Oral"])
-    oral_prednisolone_vmps = prednisolone_vmps.join(oral_vmps, ["id", "nm", "type"])
+    oral_prednisolone_vmps = prednisolone_vmps.intersect(oral_vmps)
     oral_prednisolone_amps = AMPs_from_VMPs(s, oral_prednisolone_vmps)
     return oral_prednisolone_vmps.union(oral_prednisolone_amps)
